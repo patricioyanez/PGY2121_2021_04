@@ -13,7 +13,7 @@ public class Cancion {
     /// atributos
     private String titulo;
     private String artista;
-    private int minutos;
+    private int segundos;
     private Boolean esFavorita;
     private Boolean fueDescargada;
     
@@ -23,15 +23,15 @@ public class Cancion {
     public Cancion() {
         this.titulo = "";
         this.artista = "";
-        this.minutos = 0;
+        this.segundos = 0;
         this.esFavorita = false;
         this.fueDescargada = false;
     }
 
-    public Cancion(String titulo, String artista, int minutos, Boolean esFavorita, Boolean fueDescargada) {
+    public Cancion(String titulo, String artista, int segundos, Boolean esFavorita, Boolean fueDescargada) {
         this.titulo = titulo;
         this.artista = artista;
-        this.minutos = minutos;
+        this.segundos = segundos;
         this.esFavorita = esFavorita;
         this.fueDescargada = fueDescargada;
     }
@@ -54,12 +54,12 @@ public class Cancion {
         this.artista = artista;
     }
 
-    public int getMinutos() {
-        return minutos;
+    public int getSegundos() {
+        return segundos;
     }
 
-    public void setMinutos(int minutos) {
-        this.minutos = minutos;
+    public void setSegundos(int segundos) {
+        this.segundos = segundos;
     }
 
     public Boolean getEsFavorita() {
@@ -89,19 +89,18 @@ public class Cancion {
         return "Cancion:" + "\n" +
                 "titulo=" + titulo +  "\n" +
                 "artista=" + artista +   "\n" +
-                "minutos=" + (minutos/60) + (minutos%60) +  "\n" +
+                "minutos=" + (segundos/60) + (segundos%60) +  "\n" +
                 "es Favorita=" + (esFavorita?"si":"no") + 
                 "fue Descargada=" + (fueDescargada?"Si":"no");
     }
     
     public String cancionExtendida()
     {
-        if(minutos > 300)
+        if(segundos > 300)
             return "Extendida";
         else
             return "Corta";
-    }
-    
+    } 
     
     
 }
