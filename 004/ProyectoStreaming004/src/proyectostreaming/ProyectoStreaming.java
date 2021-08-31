@@ -40,6 +40,20 @@ public class ProyectoStreaming {
         System.out.println(cancion1.cancionExtendida()); 
         
         
+        Cancion cancion2 = new Cancion("El guatón Loyola", 
+                                        "Tio Rosselot", 
+                                        180, 
+                                        true, 
+                                        true);
+        System.out.println("El artista 2 es: " + cancion2.getArtista());
+        
+        System.out.println(cancion2.imprimir());
+         
+        
+        
+        
+        
+        
     }
     
 }

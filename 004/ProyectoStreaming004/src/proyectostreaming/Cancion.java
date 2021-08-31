@@ -89,7 +89,7 @@ public class Cancion {
         return "*********************\nCancion:" + "\n" +
                 "titulo=" + titulo +  "\n" +
                 "artista=" + artista +   "\n" +
-                "minutos=" + (segundos/60) + (segundos%60) +  "\n" +
+                "segundo=" + (segundos/60) + (segundos%60) +  "\n" +
                 "es Favorita=" + (esFavorita?"si":"no") +  "\n" +
                 "fue Descargada=" + (fueDescargada?"Si":"no");
     }
