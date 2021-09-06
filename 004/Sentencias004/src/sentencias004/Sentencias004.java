@@ -101,7 +101,35 @@ public class Sentencias004 {
             opcion = leer.next();
         }
         
+        //Ejercicio fiesta:
         
+        int adultos = 0;
+        int ninos   = 0;
+        int asistentes = 0;
+        int edad    = 0;
+        
+        
+        // importar Scanner...
+        System.out.print("Ingrese la cantidad de asistentes: ");
+        asistentes = leer.nextInt();
+        
+        for(int ind = 1; ind <= asistentes; ind++)
+        {
+            System.out.print("Ingrese la edad ");
+            edad = leer.nextInt();
+            
+            if(edad <= 12)
+            {
+                ninos++;
+            }
+            else
+            {
+                adultos++; //adultos = adultos + 1;
+            }
+        }
+        
+        System.out.println("Total de adultos: " + adultos);
+        System.out.println("Total de niños  : " + ninos);
         
         
     }
