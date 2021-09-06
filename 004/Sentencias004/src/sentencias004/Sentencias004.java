@@ -1,6 +1,5 @@
-
 package sentencias004;
-
+import java.util.Scanner; // la clase que permite leer el teclado
 
 public class Sentencias004 {
 
@@ -76,6 +75,34 @@ public class Sentencias004 {
         {
             System.out.println("" + numero1--);
         }
+        int i=0;
+        for(; i < 1000;)
+        {
+            System.out.println("EL valor es: " + i++);
+        }
+        //System.out.println("valor: " + i);
+        
+        
+        
+        // Menú
+        // agregar al inicio: import java.util.Scanner;
+        Scanner leer = new Scanner(System.in);
+        String opcion = "";
+        // pregunta si opcion es distinto. se usa ! y equals
+        while(!opcion.equals("5"))
+        {
+            System.out.println("***** Menú *****");
+            System.out.println("1.- Ingreso");
+            System.out.println("2.- Modificación");
+            System.out.println("3.- Eliminar");
+            System.out.println("4.- Listar");
+            System.out.println("5.- Salir");
+            System.out.print("Ingrese su opción: ");
+            opcion = leer.next();
+        }
+        
+        
+        
         
     }
     
