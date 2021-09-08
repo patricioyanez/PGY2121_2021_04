@@ -4,7 +4,10 @@ import java.util.Scanner; // la clase que permite leer el teclado
 public class Sentencias004 {
 
     public static void main(String[] args) {
-    
+        int notaX;        
+        notaX = 50;        
+        System.out.println(notaX);
+        // crea una variable int 30
         int nota = 30;
         
         if(nota == 40)
@@ -41,7 +44,7 @@ public class Sentencias004 {
         }
         
         String curso = "";
-        int numero = 6;
+        int numero = 2;
         switch(numero){
             case 1:
                 curso ="Primero";
@@ -65,7 +68,7 @@ public class Sentencias004 {
         System.out.println("El curso es: " + curso);
         
         
-        // ciclos:
+        // ciclos: !
         int numero1 = 1;
         while(numero1 <= 10)
         {
@@ -74,6 +77,10 @@ public class Sentencias004 {
         while(numero1 >= 0)
         {
             System.out.println("" + numero1--);
+        }
+        for(int index = 0; index < 10; index++)
+        {
+            System.out.println("index: " + index);
         }
         int i=0;
         for(; i < 1000;)
@@ -99,6 +106,23 @@ public class Sentencias004 {
             System.out.println("5.- Salir");
             System.out.print("Ingrese su opción: ");
             opcion = leer.next();
+            // preguntar que opcion selecciono e imprimir la opcion
+            if(opcion.equals("1"))
+            {
+                System.out.println("Ud seleccionó la opción 1.");
+            }
+            else if(opcion.equals("2"))
+            {
+                System.out.println("Ud seleccionó la opción 2.");
+            }
+            else if(opcion.equals("3"))
+            {
+                System.out.println("Ud seleccionó la opción 3.");
+            }
+            else if(opcion.equals("4"))
+            {
+                System.out.println("Ud seleccionó la opción 4.");
+            }
         }
         
         //Ejercicio fiesta:
