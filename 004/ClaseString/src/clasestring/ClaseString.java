@@ -8,18 +8,26 @@ public class ClaseString {
         texto = "hola";
         String texto2 = "Buenos dias!";
         
-        String texto3 = new String("afdsfasd");
-        
+        String texto3 = new String("12");
+        int numero = 12;
+        System.out.println(texto3 + numero);
         texto = "aeiou";
         System.out.println(texto);
         
         StringBuilder sb = new StringBuilder( "fasdfasd");
         sb.append("afsdfasdf");
         
+        
+        // metodos de la clase String
+        System.out.println("hola".length());
         System.out.println("Cantidad de carecteres: " + texto.length());
-        System.out.println("aaa".equals("aaa"));
-        System.out.println("aaa".equals("AAA"));
-        System.out.println("aaa".equalsIgnoreCase("AAA"));
+        // equals
+        System.out.println("*********** Equal");
+        System.out.println("Case sensitive");
+        System.out.println("a".equals("a")); // true
+        System.out.println("a".equals("A")); // false???
+        System.out.println("A".equalsIgnoreCase("a"));
+        System.out.println("*********** CASE");
         System.out.println("Vuelve a mayusculas el texto: " + texto.toUpperCase());
         System.out.println("Vuelve a menuscula el texto: " + "HOLA".toLowerCase());
         System.out.print("StartsWith:");
@@ -34,8 +42,9 @@ public class ClaseString {
         String restante = rut.substring(1);
         System.out.println("_"+restante+"_");
         System.out.println(rut.trim().substring(0, 4));
-        
+        //   
         // ejercicio: que devuelva los ultimos 4 caracteres
+        System.out.println("daniel giovani acuna".replace("acuna", "acuña"));
         
         
         
