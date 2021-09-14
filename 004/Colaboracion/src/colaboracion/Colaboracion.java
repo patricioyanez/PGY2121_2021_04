@@ -5,6 +5,8 @@
  */
 package colaboracion;
 
+import java.util.Date;
+
 /**
  *
  * @author patri
@@ -27,7 +29,28 @@ public class Colaboracion {
         System.out.println(p2.toString());
         
         
-            
+        Entrada e1 = new Entrada(1, 100, new Date(),15000, p1);
+        Entrada e2 = new Entrada(2, 101, new Date(),15000, p2);
+        Entrada e3 = new Entrada(3, 102, new Date(),15000, null);
+        
+        // 
+        Persona p3 = new Persona(300,"Diego", "Quilicura");
+        e3.setPersona(p3);
+        
+        
+        System.out.println(e1.toString());
+        System.out.println(e2.toString());
+        System.out.println(e3.toString());
+        
+        // se necesita saber la comuna del dueño de la entrada 2
+        System.out.println("\n La comuna es:\n" + e2.getPersona().getComuna());
+        
+        
+        // que rut tiene la persona que compro la entrada 3
+        System.out.println("\n el rut es: \n"+ e3.getPersona().getRut());
+        
+        System.out.println("\n el rut es: \n"+ e1.getPersona().toString());
+        
         
         
         

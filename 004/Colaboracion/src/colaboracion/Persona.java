@@ -54,6 +54,15 @@ public class Persona {
                 ", comuna: " + comuna;
     }
     
+    public int codigoPostal()
+    {
+        return 10;    
+    }
+    
+    public String digitoVerificador()
+    {
+        return "K";
+    }
     
     
     
