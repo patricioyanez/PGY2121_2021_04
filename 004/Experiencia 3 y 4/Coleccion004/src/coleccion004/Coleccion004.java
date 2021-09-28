@@ -34,11 +34,46 @@ public class Coleccion004 {
        apellidos.add("Ahumada");
        apellidos.add("Briones");
                
-       for(String aux: apellidos)
+       for(String apellido: apellidos)
        {
-           System.out.println("EL apellido: " + aux.toUpperCase());
+           System.out.println("EL apellido: " + apellido.toUpperCase());
        }
        
+       // métodos disponibles
+        System.out.println("\n\n************** metodos de ArrayList ******************");
+          //devuelva la cant de elementos
+        System.out.println("Cantidad de elementos:" + apellidos.size());      
+        apellidos.clear(); // se limpiar la colección       
+        System.out.println("Cantidad de elementos:" + apellidos.size());
+        
+        // busca el elemento señalado en la colección
+        boolean estaElNombre = false;
+        estaElNombre = nombres.contains("Ignacia");
+        System.out.println("Existe el nombre: " + (estaElNombre?"si":"no"));
+        
+        if(estaElNombre)
+            System.out.println("Sí está");
+        else
+            System.out.println("No está");
+        
+        System.out.println("Existe el nombre: " + estaElNombre);
+        
+        System.out.println("Cantidad de nombres: " + nombres.size());
+        // rescato el objeto según el nro de indice señalado
+        System.out.println("El nombre del indice 1 es: " + nombres.get(1));
+        System.out.println("El nombre del indice 2 es: " + nombres.get(2));
+        
+        // devuelve el indice de la coincidencia del elemento señalado
+        System.out.println("El indice es: " + nombres.indexOf("Ana"));
+        System.out.println("El indice es: " + nombres.indexOf("Prosperina"));
+        // elimina un elemento según el criterio utilizado (por obj o por indice)
+        System.out.println("remove objeto: " + nombres.remove("Ana"));
+        System.out.println("remove indice: " + nombres.remove(0));
+        System.out.println("Cantidad actual: "+ nombres.size());
+        
+        
+        
+        
         
     }
     
