@@ -15,7 +15,19 @@ public class Empresa {
     // EJERCICIO: crear metodos para: agregar, listar y buscar(1) empleados
     public Boolean agregar(Empleado empleado)
     {
+        // evita que rut se repirta
+        if(this.buscar(empleado.getRut()))
+        {
+            System.out.println("El rut " + empleado.getRut() + " ya existe");
+            return false;        
+        }
         return empleados.add(empleado);
+    /*    
+        else
+        {
+            return empleados.add(empleado);
+        }
+    */
     }
     
     public void listar()
@@ -27,5 +39,24 @@ public class Empresa {
         }
     }
     
-    // crear el metodo buscar v/F
+    // crear el metodo buscar v/F    
+    public Boolean buscar(String rut)
+    {
+        for(Empleado empleado: empleados)
+        {
+            if(rut.equalsIgnoreCase(empleado.getRut()))
+                return true;
+        }
+        return false;
+    }
+    // Ejercicio: Eliminar empleado.
+    public Boolean eliminar(String rut)
+    {
+        for(Empleado empleado: empleados)
+        {
+            if(rut.equalsIgnoreCase(empleado.getRut()))
+                return empleados.remove(empleado);
+        }
+        return false;
+    }
 }
