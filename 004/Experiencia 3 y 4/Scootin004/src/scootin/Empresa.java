@@ -36,6 +36,8 @@ public class Empresa {
         for(Empleado empleado: empleados)
         {
             System.out.println(empleado);
+            //System.out.println("rut: " + empleado.getRut() + " Nombre: " + empleado.getNombreCompleto());
+            
         }
     }
     

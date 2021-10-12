@@ -43,6 +43,4 @@ public class Puesto {
         return "Puesto:\n" + "codigo: " + codigo + ", nombre: " + nombre;
     }
     
-    
-    
 }

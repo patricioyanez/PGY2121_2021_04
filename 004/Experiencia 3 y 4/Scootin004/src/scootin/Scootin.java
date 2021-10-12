@@ -5,6 +5,8 @@
  */
 package scootin;
 
+import java.util.Scanner;
+
 /**
  *
  * @author patri
@@ -31,13 +33,33 @@ public class Scootin {
         scootin.agregar(empleado2);
         
         // informa que el rut ya existe
-        scootin.agregar(empleado2);
+        scootin.agregar(empleado2);                                        
+        scootin.agregar(empleado1);
         
         // muesta listado de todos los empleados
         scootin.listar();
         
-        //TAREA: confirmar si un rut existe y luego eliminarlo
+        //TAREA: confirmar si un rut existe y luego eliminarlo, el rut lo escribe 
+        //el usuario.
+        Scanner leer = new Scanner(System.in);
         
+        System.out.println("**********Eliminar Empleado ************");
+        System.out.print("Ingrese Rut: ");
+        String rut = leer.next();
+        
+        if(scootin.buscar(rut))
+        {
+            scootin.eliminar(rut);
+            System.out.println("El rut fue aliminado");
+        }
+        else
+        {
+            System.out.println("El rut no existe. No se puede eliminar");
+        }
+        // muesta listado de todos los empleados
+        System.out.println("***** lista actual de empleados ***********");
+        scootin.listar();        
+         
     }
     
 }
