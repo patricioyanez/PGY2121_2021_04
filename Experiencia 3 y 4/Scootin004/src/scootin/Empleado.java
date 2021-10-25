@@ -16,7 +16,7 @@ public class Empleado {
     private int anioDeServicios;
     private int edad;
     private Puesto puesto;
-
+    
     public Empleado() {
         this.rut = "";
         this.nombreCompleto = "";
@@ -84,9 +84,10 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado:\n " + "rut=" + rut + 
-                ", nombreCompleto=" + nombreCompleto + 
-                ", genero=" + genero + 
+        return "Empleado:\n " + 
+                " rut             =" + rut + 
+                ", nombreCompleto =" + nombreCompleto + 
+                ", genero   =" + genero + 
                 ", anioDeServicios=" + anioDeServicios + 
                 ", edad=" + edad + 
                 ", puesto=" + puesto;

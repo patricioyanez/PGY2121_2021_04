@@ -36,6 +36,7 @@ public class Scootin {
         scootin.agregar(empleado2);                                        
         scootin.agregar(empleado1);
         
+        
         // muesta listado de todos los empleados
         scootin.listar();
         
