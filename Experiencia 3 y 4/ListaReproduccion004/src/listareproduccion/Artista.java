@@ -41,7 +41,7 @@ public class Artista {
 
     @Override
     public String toString() {
-        return "Artista\n" + "nombre=" + nombre + ", origen=" + origen;
+        return "Artista:\n" + "nombre=" + nombre + ", origen=" + origen;
     }
     
     
