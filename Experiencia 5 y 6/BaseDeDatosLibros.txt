@@ -6,3 +6,8 @@ publicacion VARCHAR(12) 	NOT NULL,
 precio		INT 			NOT NULL, 
 disponible	INT 			NOT NULL 
 );
+
+Instalar XAMPP 
+DBMaria / mysql
+
+swing
