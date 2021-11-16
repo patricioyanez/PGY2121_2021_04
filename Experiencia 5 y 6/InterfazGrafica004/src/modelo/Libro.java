@@ -21,6 +21,12 @@ public class Libro {
     private boolean disponible;
 
     public Libro() {
+        this.idLibro = 0;
+        this.titulo = "";
+        this.autor = "";
+        this.publicacion = null;
+        this.precio = 0;
+        this.disponible = false;
     }
 
     public Libro(int idLibro, String titulo, String autor, Date publicacion, int precio, boolean disponible) {
@@ -80,4 +86,18 @@ public class Libro {
         this.disponible = disponible;
     }
 
+    @Override
+    public String toString() {
+        return "Libro{" + "idLibro=" + idLibro + ", titulo=" + titulo + ", autor=" + autor + ", publicacion=" + publicacion + ", precio=" + precio + ", disponible=" + disponible + '}';
+    }
+
+    public void limpiar()
+    {        
+        this.idLibro = 0;
+        this.titulo = "";
+        this.autor = "";
+        this.publicacion = null;
+        this.precio = 0;
+        this.disponible = false;
+    }
 }

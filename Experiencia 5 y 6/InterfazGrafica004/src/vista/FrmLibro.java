@@ -5,12 +5,20 @@
  */
 package vista;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Libro;
+
 /**
  *
  * @author patri
  */
 public class FrmLibro extends javax.swing.JFrame {
-
+    Libro libro =   new Libro();  
     /**
      * Creates new form FrmLibro
      */
@@ -56,6 +64,7 @@ public class FrmLibro extends javax.swing.JFrame {
         setTitle("Ingreso de Libro");
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("Ingreso de Libros");
 
         jLabel2.setText("Titulo");
@@ -78,9 +87,16 @@ public class FrmLibro extends javax.swing.JFrame {
 
         txtTitulo.setToolTipText("Ingrese el titulo del libro");
 
+        txtAutor.setToolTipText("Ingrese un autor. Ej: Isaac Asimov");
+
         chkDisponible.setText("Si");
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
 
@@ -97,15 +113,20 @@ public class FrmLibro extends javax.swing.JFrame {
 
         grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Titulo", "Autor", "Publicación", "Precio", "Disponible"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(grilla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,8 +240,76 @@ public class FrmLibro extends javax.swing.JFrame {
         txtAnio.setText("");
         txtPrecio.setText("");
         chkDisponible.setSelected(false);
-        txtTitulo.requestFocus();                
+        txtTitulo.requestFocus();
+        libro.limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        // validar // si estan en blanco
+        if(txtTitulo.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el titulo del libro");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtAutor.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el Autor del libro");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtDia.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el día de la publicación");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtMes.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el mes de la publicación");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtAnio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el año de la publicación");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtPrecio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el precio del libro");
+            txtTitulo.requestFocus();
+            
+        }
+        else
+        {
+            // flag /bandera = usuario quiere ingresar nuevo libro
+            libro.setIdLibro(0);
+            libro.setTitulo(txtTitulo.getText().toUpperCase());
+            libro.setAutor(txtAutor.getText().toUpperCase());
+            
+            Date fecha;
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/mm/yyyy");
+            try {
+                // convierte el string en una fecha valida
+                fecha = formatoFecha.parse(txtDia.getText() + "/" + txtMes.getText() + "/" + txtAnio.getText());
+                libro.setPublicacion(fecha);
+            } catch (ParseException ex) {
+                Logger.getLogger(FrmLibro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int precio = 0;
+            // Integer.parseInt convierte el String en un numero (int)
+            precio = Integer.parseInt(txtPrecio.getText());
+            
+            libro.setPrecio(precio);
+            
+            libro.setDisponible(chkDisponible.isSelected());
+            JOptionPane.showMessageDialog(this, libro);
+        }
+       
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
