@@ -5,6 +5,7 @@
  */
 package vista;
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Libro;
-
+import controlador.Registro;
 /**
  *
  * @author patri
@@ -306,7 +307,16 @@ public class FrmLibro extends javax.swing.JFrame {
             libro.setPrecio(precio);
             
             libro.setDisponible(chkDisponible.isSelected());
-            JOptionPane.showMessageDialog(this, libro);
+            //JOptionPane.showMessageDialog(this, libro);
+            
+            Registro r = new Registro();
+            if(r.agregar(libro))
+            {
+                JOptionPane.showMessageDialog(this, "El libro fue guardado con éxito");
+                btnLimpiar.doClick();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Error al guardar el libro");
         }
        
     }//GEN-LAST:event_btnGuardarActionPerformed
