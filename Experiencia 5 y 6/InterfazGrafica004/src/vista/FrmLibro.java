@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Libro;
 import controlador.Registro;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author patri
@@ -111,6 +113,11 @@ public class FrmLibro extends javax.swing.JFrame {
         });
 
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,12 +171,12 @@ public class FrmLibro extends javax.swing.JFrame {
                                 .addComponent(btnLimpiar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
                                 .addComponent(btnModificar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEliminar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminar)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -218,13 +225,13 @@ public class FrmLibro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnModificar)
                     .addComponent(btnEliminar)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnListar))
-                .addGap(18, 18, 18)
+                    .addComponent(btnListar)
+                    .addComponent(btnModificar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -320,6 +327,30 @@ public class FrmLibro extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        // TODO add your handling code here:
+        Registro registro = new Registro();
+        
+        DefaultTableModel modelo = (DefaultTableModel) grilla.getModel();
+        modelo.setRowCount(0);
+        String titulo = txtTitulo.getText();
+        List<Libro> lista = registro.buscarTitulo(titulo);
+        
+        //List<Libro> lista = registro.buscarTodos();
+        for(Libro aux: lista)
+        {
+            modelo.addRow(new Object[]{   
+                //aux.getIdLibro(),
+                aux.getTitulo(),
+                aux.getAutor(),
+                aux.getPublicacion(),
+                aux.getPrecio(),
+                aux.isDisponible()            
+            });
+        }
+        
+    }//GEN-LAST:event_btnListarActionPerformed
 
     /**
      * @param args the command line arguments
