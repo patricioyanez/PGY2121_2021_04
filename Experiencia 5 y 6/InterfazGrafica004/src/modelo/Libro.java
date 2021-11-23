@@ -93,7 +93,7 @@ public class Libro {
 
     public void limpiar()
     {        
-        this.idLibro = 0;
+        this.idLibro = 0; // = 0 insertar/guardar   .  0> update / delete
         this.titulo = "";
         this.autor = "";
         this.publicacion = null;

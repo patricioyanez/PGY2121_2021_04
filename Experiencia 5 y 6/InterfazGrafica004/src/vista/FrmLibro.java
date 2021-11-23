@@ -102,8 +102,18 @@ public class FrmLibro extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,15 +134,20 @@ public class FrmLibro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titulo", "Autor", "Publicación", "Precio", "Disponible"
+                "idLibro", "Titulo", "Autor", "Publicación", "Precio", "Disponible"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        grilla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grillaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(grilla);
@@ -341,7 +356,7 @@ public class FrmLibro extends javax.swing.JFrame {
         for(Libro aux: lista)
         {
             modelo.addRow(new Object[]{   
-                //aux.getIdLibro(),
+                aux.getIdLibro(),
                 aux.getTitulo(),
                 aux.getAutor(),
                 aux.getPublicacion(),
@@ -351,6 +366,130 @@ public class FrmLibro extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnListarActionPerformed
+
+    private void grillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grillaMouseClicked
+        // TODO add your handling code here:
+        int row = grilla.getSelectedRow();        
+        //int row = grilla.rowAtPoint(evt.getPoint());
+        
+        int id = 0;
+        id = Integer.parseInt(grilla.getValueAt(row, 0).toString());
+        libro.setIdLibro(id); // para que pueda modificar o eliminar
+        txtTitulo.setText(grilla.getValueAt(row, 1).toString());
+        txtAutor.setText(grilla.getValueAt(row, 2).toString());
+        
+        String fecha = "";
+        fecha = grilla.getValueAt(row, 3).toString();
+        System.out.println(fecha);
+        txtDia.setText(fecha.substring(8)); // 2000/10/01
+        txtMes.setText(fecha.substring(5, 7)); // 2000/10/01
+        txtAnio.setText(fecha.substring(0,4)); // 2000/10/01
+        
+        txtPrecio.setText(grilla.getValueAt(row, 4).toString());
+        
+        chkDisponible.setSelected(grilla.getValueAt(row, 5).toString().equals("true"));
+
+        
+    }//GEN-LAST:event_grillaMouseClicked
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        // validar // si estan en blanco
+        if(libro.getIdLibro() < 1)// va a contener un valor cuando el usuario realiza un clic en la grilla
+        {
+            JOptionPane.showMessageDialog(this, "No se puede modificar, debe seleccionar una fila.");
+            txtTitulo.requestFocus();
+        }
+        else if(txtTitulo.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el titulo del libro");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtAutor.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el Autor del libro");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtDia.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el día de la publicación");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtMes.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el mes de la publicación");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtAnio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el año de la publicación");
+            txtTitulo.requestFocus();
+            
+        }
+        else if(txtPrecio.getText().trim().length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Falta especificar el precio del libro");
+            txtTitulo.requestFocus();
+            
+        }
+        else
+        {
+            //libro.setIdLibro(0); No va esta linea pq no se podrá modificar. Está almacenando el id para modificar
+            libro.setTitulo(txtTitulo.getText().toUpperCase());
+            libro.setAutor(txtAutor.getText().toUpperCase());
+            
+            Date fecha;
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/mm/yyyy");
+            try {
+                // convierte el string en una fecha valida
+                fecha = formatoFecha.parse(txtDia.getText() + "/" + txtMes.getText() + "/" + txtAnio.getText());
+                libro.setPublicacion(fecha);
+            } catch (ParseException ex) {
+                Logger.getLogger(FrmLibro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int precio = 0;
+            // Integer.parseInt convierte el String en un numero (int)
+            precio = Integer.parseInt(txtPrecio.getText());
+            
+            libro.setPrecio(precio);
+            
+            libro.setDisponible(chkDisponible.isSelected());
+            //JOptionPane.showMessageDialog(this, libro);
+            
+            Registro r = new Registro();
+            if(r.actualizar(libro))
+            {
+                JOptionPane.showMessageDialog(this, "El libro fue guardado con éxito");
+                btnLimpiar.doClick();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Error al guardar el libro");
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if(libro.getIdLibro() < 1)// va a contener un valor cuando el usuario realiza un clic en la grilla
+        {
+            JOptionPane.showMessageDialog(this, "No se puede modificar, debe seleccionar una fila.");
+            txtTitulo.requestFocus();
+        }
+        else
+        {
+            Registro r = new Registro();
+            if(r.eliminar(libro.getIdLibro()))
+            {
+                JOptionPane.showMessageDialog(this, "El libro fue eliminado con éxito");
+                btnLimpiar.doClick();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Error al eliminar el libro");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
